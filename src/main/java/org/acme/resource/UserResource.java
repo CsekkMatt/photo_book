@@ -27,7 +27,7 @@ public class UserResource {
             userService.registerUser(request);
             return Response.status(Response.Status.CREATED).build();
         } catch (Exception e) {
-            throw ew UserAlreadyExistsException("User already exists....");
+            throw new UserAlreadyExistsException("User already exists....");
         }
     }
 
