@@ -2,6 +2,7 @@ package org.acme.resource;
 
 import org.acme.auth.UserService;
 import org.acme.data.UserRegistrationRequest;
+import org.acme.exception.UserAlreadyExistsException;
 
 import io.vertx.ext.auth.User;
 import jakarta.inject.Inject;
@@ -22,8 +23,12 @@ public class UserResource {
     @POST
     @Path("/register")
     public Response registerUser(UserRegistrationRequest request) {
-        User user = userService.registerUser(request);
-        return Response.status(Response.Status.CREATED).entity(user).build();
+        try {
+            userService.registerUser(request);
+            return Response.status(Response.Status.CREATED).build();
+        } catch (Exception e) {
+            throw ew UserAlreadyExistsException("User already exists....");
+        }
     }
-    
+
 }
