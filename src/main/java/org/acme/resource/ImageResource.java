@@ -1,7 +1,7 @@
 package org.acme.resource;
 
 import org.acme.data.ImageUploadRequest;
-import org.acme.image.Image;
+import org.acme.model.Image;
 import org.acme.service.ImageService;
 
 import jakarta.inject.Inject;
